@@ -3,6 +3,7 @@ import Item from "../components/Item";
 import BakeryItemsPayload from './BakeryItemsPayload.json';
 
 import './BakeryContainer.css';
+import AddItem from "../components/AddItem";
 
 const  BakeryContainer = () => {
 
@@ -19,13 +20,18 @@ const  BakeryContainer = () => {
     }
 
     return (
-        <div className="bakery-items">
-            <div className="cakes-section">
-                <h2>Cakes</h2>
-                <div className="display">{displayItems("cakes")}</div>
+        <>
+            <div className="add-item">
+                <AddItem />
+            </div>
+            <div className="bakery-items">
+                <div className="cakes-section">
+                    <h2>Cakes</h2>
+                    <div className="display">{displayItems("cakes")}</div>
+                </div>
             </div>
             <h2>Total Value Sold: £{totalValueSold}</h2>
-        </div>
+        </>
     );
 }
  
