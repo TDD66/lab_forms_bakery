@@ -12,7 +12,11 @@ const  BakeryContainer = () => {
         setTotalValueSold(totalValueSold + price);
     }
 
-    const items = BakeryItemsPayload;
+    const [items, setItems] = useState(BakeryItemsPayload);
+
+    const addNewItem = (newItem) => {
+        setItems([...items, newItem]);
+    }
 
     const displayItems = (type) => {
         return items.map((item) => <Item key={item.name} item={item} itemType={type} sellItem={sellItem}/>);
@@ -21,7 +25,7 @@ const  BakeryContainer = () => {
     return (
         <>
             <div className="add-item">
-                <AddItem />
+                <AddItem addNewItem={addNewItem}/>
             </div>
             <div className="bakery-items">
                 <div className="cakes-section">
