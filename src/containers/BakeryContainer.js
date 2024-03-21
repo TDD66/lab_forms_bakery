@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Item from "../components/Item";
 import BakeryItemsPayload from './BakeryItemsPayload.json';
-
 import './BakeryContainer.css';
 import AddItem from "../components/AddItem";
 
