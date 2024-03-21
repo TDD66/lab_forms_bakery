@@ -3,6 +3,7 @@ import Item from "../components/Item";
 import BakeryItemsPayload from './BakeryItemsPayload.json';
 import './BakeryContainer.css';
 import AddItem from "../components/AddItem";
+import ItemList from "../components/ItemList";
 
 const  BakeryContainer = () => {
 
@@ -16,30 +17,38 @@ const  BakeryContainer = () => {
 
     const [items, setItems] = useState(BakeryItemsPayload);
 
-    var itemsList = items.map((item) => <Item key={item.name} item={item} sellItem={sellItem}/>);
+    const allItems = BakeryItemsPayload;
 
     const addNewItem = (newItem) => {
         setItems([...items, newItem]);
     }
 
-    const filterItems = (() => {
-        let filterItemsList = items.filter(items => {items.name.toLowerCase().includes(filterTerm.toLowerCase)});
-        console.log(filterItemsList);
-        itemsList =  filterItemsList.map((item) => <Item key={item.name} item={item} sellItem={sellItem}/>);
-        console.log(itemsList);
-    });
+        const filterItems = (filterTerm) => {
+            if(filterTerm === ""){
+                return allItems;
+            }
+            return items.filter(item => item.name.toLowerCase().includes(filterTerm));
+        }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setItems(allItems);
+        setItems(filterItems(filterTerm));
+    }
+
 
     return (
         <>
             <div className="search">
-                <form id="filter-items-form" onSubmit={filterItems}>
-                    <label htmlFor="filter-term">Search:</label>
-                    <input 
-                    id="filter-term" 
-                    type="text"
-                    onChange={(event)=> setFilterTerm(event.target.value)}
-                    />
-                    <input type="submit"/>
+            <form onSubmit={handleSubmit}>
+            <input
+            type="text"
+            name="search-bar"
+            placeholder="Enter item name"
+            value={filterTerm}
+            onChange={(event)=> setFilterTerm(event.target.value)}
+            />
+            <input type="submit" value="submit"/>
                 </form>
             </div>
 
@@ -49,7 +58,7 @@ const  BakeryContainer = () => {
             <div className="bakery-items">
                 <div className="cakes-section">
                     <h2>Cakes</h2>
-                    <div className="display">{itemsList}</div>
+                    <ItemList items={items} sellItem={sellItem}/>
                 </div>
             </div>
             <h2>Total Value Sold: £{totalValueSold}</h2>
