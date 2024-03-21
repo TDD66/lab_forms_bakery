@@ -12,18 +12,10 @@ const  BakeryContainer = () => {
         setTotalValueSold(totalValueSold + price);
     }
 
-    const bakeryItems = BakeryItemsPayload[0];
-
-    const itemTypes = Object.keys(bakeryItems);
-    const items = itemTypes.reduce((acc, type) => {
-        acc[type] = bakeryItems[type];
-        return acc;
-    }, {});
-
-
+    const items = BakeryItemsPayload;
 
     const displayItems = (type) => {
-        return items[type].map((item) => <Item key={item.name} item={item} itemType={type} sellItem={sellItem}/>);
+        return items.map((item) => <Item key={item.name} item={item} itemType={type} sellItem={sellItem}/>);
     }
 
     return (
@@ -32,11 +24,6 @@ const  BakeryContainer = () => {
                 <h2>Cakes</h2>
                 <div className="display">{displayItems("cakes")}</div>
             </div>
-            <div className="pies-section">
-                <h2>Pies</h2>
-                <div className="display">{displayItems("pies")}</div>
-            </div>
-
             <h2>Total Value Sold: £{totalValueSold}</h2>
         </div>
     );
