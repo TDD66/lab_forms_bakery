@@ -27,12 +27,11 @@ const  BakeryContainer = () => {
             if(filterTerm === ""){
                 return allItems;
             }
-            return items.filter(item => item.name.toLowerCase().includes(filterTerm));
+            return allItems.filter(item => item.name.toLowerCase().includes(filterTerm));
         }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setItems(allItems);
         setItems(filterItems(filterTerm));
     }
 
