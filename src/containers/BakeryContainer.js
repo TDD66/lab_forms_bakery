@@ -20,6 +20,7 @@ const  BakeryContainer = () => {
 
     const addNewItem = (newItem) => {
         setAllItems([...allItems, newItem]);
+        console.log(allItems);
     }
 
     const filterItems = (filterTerm) => {
