@@ -13,8 +13,6 @@ const AddItem = ({addNewItem}) => {
         addNewItem(newItem);
     }
 
-
-
     return ( 
     <>
         <h2>Add Item</h2>
@@ -51,20 +49,6 @@ const AddItem = ({addNewItem}) => {
         </form>
     
     </> );
-
-
-
-
-
 }
- 
-
-
-
-
-
-
-
-
 
 export default AddItem;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BakeryItemsPayload from './BakeryItemsPayload.json';
 import './BakeryContainer.css';
 import AddItem from "../components/AddItem";
@@ -20,13 +20,17 @@ const  BakeryContainer = () => {
 
     const addNewItem = (newItem) => {
         setAllItems([...allItems, newItem]);
-        console.log(allItems);
     }
+
+    useEffect(() => {
+        setItems(allItems);
+    }, [allItems]);
 
     const filterItems = (filterTerm) => {
         if(filterTerm === ""){
             return allItems;
         }
+        console.log(allItems.filter(item => item.name.toLowerCase().includes(filterTerm.toLowerCase())));
         return allItems.filter(item => item.name.toLowerCase().includes(filterTerm.toLowerCase()));
     }
 
