@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Item from "../components/Item";
 import BakeryItemsPayload from './BakeryItemsPayload.json';
 import './BakeryContainer.css';
 import AddItem from "../components/AddItem";
@@ -17,18 +16,18 @@ const  BakeryContainer = () => {
 
     const [items, setItems] = useState(BakeryItemsPayload);
 
-    const allItems = BakeryItemsPayload;
+    const [allItems, setAllItems] = useState(BakeryItemsPayload);
 
     const addNewItem = (newItem) => {
-        setItems([...items, newItem]);
+        setAllItems([...allItems, newItem]);
     }
 
-        const filterItems = (filterTerm) => {
-            if(filterTerm === ""){
-                return allItems;
-            }
-            return allItems.filter(item => item.name.toLowerCase().includes(filterTerm));
+    const filterItems = (filterTerm) => {
+        if(filterTerm === ""){
+            return allItems;
         }
+        return allItems.filter(item => item.name.toLowerCase().includes(filterTerm.toLowerCase()));
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
